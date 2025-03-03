@@ -10,13 +10,14 @@ public class Validation {
 
     public static int getInt(String mess, int min, int max) {
         while (true) {
-            System.out.println(mess);
+            System.out.print(mess);
             try {
                 int n = Integer.parseInt(sc.nextLine());
-                if (min >= n || n <= max) {
+                if (n >= min && n <= max) {
                     return n;
+                } else {
+                    System.err.println("Out of bound. Please enter a number between " + min + " and " + max + ".");
                 }
-                System.err.println("Out of bound. Please enter number that between " + min + " and " + max + ".");
             } catch (NumberFormatException e) {
                 System.err.println("Wrong format. Please enter an integer!");
             }
@@ -25,13 +26,14 @@ public class Validation {
 
     public static double getDouble(String mess, double min, double max) {
         while (true) {
-            System.out.println(mess);
+            System.out.print(mess);
             try {
                 double n = Double.parseDouble(sc.nextLine());
-                if (min >= n || n <= max) {
+                if (n >= min && n <= max) {
                     return n;
+                } else {
+                    System.err.println("Out of bound. Please enter number that between " + min + " and " + max + ".");
                 }
-                System.err.println("Out of bound. Please enter number that between " + min + " and " + max + ".");
             } catch (NumberFormatException e) {
                 System.err.println("Wrong format. Please enter an integer!");
             }
@@ -40,7 +42,7 @@ public class Validation {
 
     public static String getString(String mess, String err) {
         while (true) {
-            System.out.println(mess);
+            System.out.print(mess);
             String s = sc.nextLine();
             if (!s.isEmpty()) {
                 return s;
@@ -62,27 +64,28 @@ public class Validation {
         }
     }
 
-    public static String getCode(String mess, String err, List<Worker> wList, int idMode) {
+    public static String getCode(String mess, String err, List<Worker> wList, int codeMode) {
         String s;
         while (true) {
-            System.out.println(mess);
+            System.out.print(mess);
             s = sc.nextLine();
             //mode 1: input - id not exist
             //mode 2: update - id must exist
-            if(!s.isEmpty()) {
-                if((idMode == 1 && checkWorker(s, wList) == null)
-                        || (idMode == 2 && checkWorker(s, wList) != null)) {
+            if (!s.isEmpty()) {
+                if ((codeMode == 1 && checkWorker(s, wList) == null)
+                        || (codeMode == 2 && checkWorker(s, wList) != null)) {
                     break;
+                } else {
+                    System.err.println(err);
                 }
-                System.err.println(err);
             }
         }
         return s;
     }
 
-    public static Worker checkWorker(String id, List<Worker> wList) { //check id existed or not
+    public static Worker checkWorker(String id, List<Worker> wList) { //check id existed or not in database
         for (Worker w : wList) {
-            if(w.getId().equals(id)) {
+            if (w.getId().equals(id)) {
                 return w;
             }
         }
