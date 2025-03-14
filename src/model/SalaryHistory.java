@@ -1,25 +1,48 @@
 package model;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 public class SalaryHistory {
-    private String id, name;
-    private int age;
-    private double updateSalary;
+    private Worker worker;
+    private double newSalary;
     private String status;
     private LocalDate date;
 
-    public SalaryHistory(String id, String name, int age, double updateSalary, String status, LocalDate date) {
-        this.id = id;
-        this.name = name;
-        this.age = age;
-        this.updateSalary = updateSalary;
+    public SalaryHistory(Worker worker, double newSalary, String status) {
+        this.worker = worker;
+        this.newSalary = newSalary;
         this.status = status;
-        this.date = date;
+        this.date = LocalDate.now();
+    }
+
+    public double getNewSalary() {
+        return newSalary;
+    }
+
+    public void setNewSalary(double newSalary) {
+        this.newSalary = newSalary;
+    }
+
+    public Worker getWorker() {
+        return worker;
+    }
+
+    public void setWorker(Worker worker) {
+        this.worker = worker;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     @Override
     public String toString() {
-        return String.format(" %s | %-8s | %2d | %-7.2s | %-4s | %-10s ", id, name, age, updateSalary, status, date);
+        return String.format(" %s | %-8s | %-6.1f | %-7s | %s ",
+                worker.getId(), worker.getName(), newSalary, status, date);
     }
 }

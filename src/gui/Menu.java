@@ -11,6 +11,8 @@ public class Menu {
             "Up Salary",
             "Down Salary",
             "Display Information Salary",
+            "Display All Worker",
+            "Display Worker Salary",
             "Exit"
     };
 
@@ -42,13 +44,13 @@ public class Menu {
                     m.updateSalary(2);
                     break;
                 case 4:
-                    m.getInformation();
+                    m.displaySalaryHistory();
                     break;
                 case 5:
-                    m.displayAll();
+                    m.displayAllWorker();
                     break;
                 case 6:
-                    m.displayAll();
+                    m.displayWorkerSalary();
                     break;
             }
         } while (choice != opt.length);
